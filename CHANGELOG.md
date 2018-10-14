@@ -13,6 +13,9 @@ Given a version number MAJOR.MINOR.PATCH, increment the:
 
 ---
 
+## [0.0.2] - 2018-10-14
+### Changed
+- Ignored content in data folder
 
 ## [0.0.1] - 2018-10-14
 ### Added

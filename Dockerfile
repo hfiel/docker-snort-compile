@@ -76,7 +76,7 @@ RUN apt-get update && apt-get upgrade -y && \
 #     SSH
       openssh-client \
       openssh-server \
-# end
+#     end
       && \
 #     clean up
       apt-get clean -y && \
@@ -110,11 +110,11 @@ RUN apt-get update && \
       libssl-dev \
       libnghttp2-dev \
       libluajit-5.1-dev \
-   # DAQ dependencies
+#     DAQ dependencies
       libnetfilter-queue-dev \
       bison \
       flex \
-   # end
+#     end
       && \
 #     clean up
       apt-get clean -y && \

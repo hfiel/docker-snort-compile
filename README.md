@@ -1,10 +1,26 @@
 # docker-snort-compile
 Docker environment to compile Snort from source
 
+Table of Contents
+=================
+
+   * [docker-snort-compile](#docker-snort-compile)
+   * [tl;dr](#tldr)
+   * [What](#what)
+   * [Why](#why)
+   * [Usage](#usage)
+      * [Volumes](#volumes)
+      * [Ports](#ports)
+   * [Versions of packages tested](#versions-of-packages-tested)
+   * [About IPQ and netmap modules for DAQ](#about-ipq-and-netmap-modules-for-daq)
+   * [Contributing](#contributing)
+   * [License](#license)
+
 # tl;dr
 
 Just _build_ the image, _start_ the container and open a _shell_.
 This will leave you inside the container ready to perform any build tasks.
+
 
 # What
 
@@ -52,6 +68,12 @@ This container has been created and tested using:
 * docker-compose 1.13.0 (https://docs.docker.com/compose/)
 * daq 2.0.6 (https://www.snort.org/downloads/snort/daq-2.0.6.tar.gz)
 * snort 2.9.12 (https://www.snort.org/downloads/snort/snort-2.9.12.tar.gz)
+
+# About IPQ and netmap modules for DAQ
+
+* _libipq_ is deprecated (replaced by *libnetfilter_queue*), so DAQ (and Snort) will not be able to use the old _IPQ_ module. You can use the current _NFQ_ module instead, and its requirements are included in the container.
+* _netmap_ (https://github.com/luigirizzo/netmap) requires compilation packages and procedures dependent on the specific kernel and hardware for the target machine, so its requirements are not included in the container. If you want to compile DAQ with the _netmap_ module, you will need to solve all the required dependencies.
+
 
 # Contributing
 

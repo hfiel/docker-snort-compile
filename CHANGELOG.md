@@ -13,6 +13,12 @@ Given a version number MAJOR.MINOR.PATCH, increment the:
 
 ---
 
+## [0.0.4] - 2018-10-14
+### Changed
+- Added libluajit-dev package to container
+- Beautify Dockerfile
+- Improved README.md and added ToC
+
 ## [0.0.3] - 2018-10-14
 ### Changed
 - Added ca-certificates and checkinstall packages to container

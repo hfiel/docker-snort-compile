@@ -109,6 +109,7 @@ RUN apt-get update && \
       openssl \
       libssl-dev \
       libnghttp2-dev \
+      libluajit-5.1-dev \
    # DAQ dependencies
       libnetfilter-queue-dev \
       bison \

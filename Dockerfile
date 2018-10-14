@@ -64,6 +64,7 @@ RUN apt-get update && apt-get upgrade -y && \
       supervisor \
       tree \
       unzip \
+      ca-certificates \
 #     Debian network tools
       curl \
       wget \
@@ -71,10 +72,11 @@ RUN apt-get update && apt-get upgrade -y && \
       vim \
       git \
       build-essential \
+      checkinstall \
 #     SSH
       openssh-client \
       openssh-server \
-# end
+#     end
       && \
 #     clean up
       apt-get clean -y && \
@@ -107,11 +109,12 @@ RUN apt-get update && \
       openssl \
       libssl-dev \
       libnghttp2-dev \
-   # DAQ dependencies
+      libluajit-5.1-dev \
+#     DAQ dependencies
       libnetfilter-queue-dev \
       bison \
       flex \
-   # end
+#     end
       && \
 #     clean up
       apt-get clean -y && \

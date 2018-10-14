@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+source ./docker-snort-compile-exports
+docker-compose -f docker-compose.yml down

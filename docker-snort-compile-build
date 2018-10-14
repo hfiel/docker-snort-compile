@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+source ./docker-snort-compile-exports
+docker build -t docker-snort-compile:latest .

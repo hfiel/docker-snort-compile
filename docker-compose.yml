@@ -1,0 +1,14 @@
+version: '3'
+services:
+  docker-snort-compile:
+    container_name: dockersnortcompile
+    image: docker-snort-compile:latest
+    restart: unless-stopped
+    network_mode: default
+    environment:
+      - HOST_UID=${HOST_UID}
+      - HOST_GID=${HOST_GID}
+      - DEVELOPER_USER=${DEVELOPER_USER}
+    volumes:
+      - ~/.ssh/:/home/${DEVELOPER_USER}/.ssh/
+      - ./data:/data

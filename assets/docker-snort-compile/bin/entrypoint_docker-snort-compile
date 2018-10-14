@@ -1,0 +1,11 @@
+#!/bin/bash
+
+#docker-snort-compile container
+source /assets/docker-snort-compile/bin/entrypoint_docker-snort-compile.functions
+
+test -z "${DEVELOPER_USER}" && export DEVELOPER_USER="developer"
+create-developer-user ${DEVELOPER_USER}
+
+link-assets
+
+leave-supervisord-in-foreground

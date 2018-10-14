@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+HOST_UID=$(id -u)
+HOST_GID=$(id -g)
+export HOST_UID
+export HOST_GID
+DEVELOPER_USER=developer
+export DEVELOPER_USER

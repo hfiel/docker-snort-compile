@@ -1,0 +1,52 @@
+#!/bin/bash
+set -x
+
+function create-developer-user() {
+
+  ARGS=$@
+  DEVELOPER_USER=$1
+  DEVELOPER_HOME="/home/${DEVELOPER_USER}"
+  # set an unprivileged user using the host UID to avoid messing with perms
+  test -z $HOST_UID && HOST_UID=1000
+  test -z $HOST_GID && HOST_GID=1000
+  export uid=$HOST_UID gid=$HOST_GID
+  if [ -z $(grep ^${DEVELOPER_USER} /etc/passwd) ]
+  then
+    echo "${DEVELOPER_USER}:!:${uid}:${gid}:${DEVELOPER_USER},,,:${DEVELOPER_HOME}:/bin/bash" >> /etc/passwd
+    echo "${DEVELOPER_USER}:!:${uid}:" >> /etc/group
+    echo "${DEVELOPER_USER}:*:99999:0:99999:7:::" >> /etc/shadow
+    echo "${DEVELOPER_USER} ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/${DEVELOPER_USER}
+    chmod 0440 /etc/sudoers.d/${DEVELOPER_USER}
+    if [ ! -d "${DEVELOPER_HOME}" ]
+    then
+      cp -a /etc/skel ${DEVELOPER_HOME}
+    else
+      rsync -Pav /etc/skel/ ${DEVELOPER_HOME}/
+    fi
+    chown ${uid}:${gid} -R ${DEVELOPER_HOME}
+  fi
+
+}
+
+function link-assets() {
+
+  RSYNC_EXCLUDES=""
+  RSYNC_OPTS="-Pav"
+
+  rsync $RSYNC_OPTS $RSYNC_EXCLUDES /assets/docker-snort-compile/ /
+
+}
+
+function leave-supervisord-in-foreground() {
+
+  if [ ${last_container_is} == ${current_container_is} ]
+  then
+    LOG_DIR=$(grep logfile /etc/supervisor/supervisord.conf | awk -F= '{print $2}' | awk '{print $1}' | sed 's|;||g' | xargs dirname)
+    mkdir -p $LOG_DIR
+
+    exec supervisord -n -c /etc/supervisor/supervisord.conf
+  fi
+
+  exec "$@"
+
+}

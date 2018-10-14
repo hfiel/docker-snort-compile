@@ -13,6 +13,10 @@ Given a version number MAJOR.MINOR.PATCH, increment the:
 
 ---
 
+## [0.0.3] - 2018-10-14
+### Changed
+- Added ca-certificates and checkinstall packages to container
+
 ## [0.0.2] - 2018-10-14
 ### Changed
 - Ignored content in data folder

@@ -64,6 +64,7 @@ RUN apt-get update && apt-get upgrade -y && \
       supervisor \
       tree \
       unzip \
+      ca-certificates \
 #     Debian network tools
       curl \
       wget \
@@ -71,6 +72,7 @@ RUN apt-get update && apt-get upgrade -y && \
       vim \
       git \
       build-essential \
+      checkinstall \
 #     SSH
       openssh-client \
       openssh-server \
